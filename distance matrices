@@ -1,5 +1,5 @@
 library(igraph)
-natural.distance.matrix=function(g)
+natural.distance.matrix <- function(g)
 {
      if (class(g)[1] !="igraph"){
          stop ("'g' must be an 'igraph' object")
@@ -11,7 +11,7 @@ natural.distance.matrix=function(g)
 }
 
 library(igraph)
-jaccard.distance.matrix=function(g)
+jaccard.distance.matrix <- function(g)
 {
      if (class(g)[1] !="igraph"){
          stop ("'g' must be an 'igraph' object")
@@ -29,7 +29,7 @@ jaccard.distance.matrix=function(g)
 The above function was inspired by the function dist.binary() from the ade4 package.
 
 library(igraph)
-cosine.distance.matrix=function(g)
+cosine.distance.matrix <- function(g)
 {
      if (class(g)[1] !="igraph"){
          stop ("'g' must be an 'igraph' object")
