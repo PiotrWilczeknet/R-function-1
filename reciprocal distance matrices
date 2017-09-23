@@ -1,5 +1,5 @@
 library(igraph)
-reciprocal.natural.distance.matrix=function(g)
+reciprocal.natural.distance.matrix <- function(g)
 {
      if (class(g)[1] !="igraph"){
          stop ("'g' must be an 'igraph' object")
@@ -13,7 +13,7 @@ reciprocal.natural.distance.matrix=function(g)
 }
 
 library(igraph)
-reciprocal.jaccard.distance.matrix=function(g)
+reciprocal.jaccard.distance.matrix <- function(g)
 {
      if (class(g)[1] !="igraph"){
          stop ("'g' must be an 'igraph' object")
@@ -31,7 +31,7 @@ reciprocal.jaccard.distance.matrix=function(g)
 }
 
 library(igraph)
-reciprocal.cosine.distance.matrix=function(g)
+reciprocal.cosine.distance.matrix <- function(g)
 {
       if (class(g)[1] !="igraph"){
           stop ("'g' must be an 'igraph' object")
