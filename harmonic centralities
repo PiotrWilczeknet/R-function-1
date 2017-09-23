@@ -1,5 +1,5 @@
 library(igraph)
-natural.harmonic.centrality=function(g)
+natural.harmonic.centrality <- function(g)
 {
      if (class(g)[1] !="igraph"){
          stop ("'g' must be an 'igraph' object")
@@ -14,7 +14,7 @@ natural.harmonic.centrality=function(g)
 }
 
 library(igraph)
-jaccard.harmonic.centrality=function(g)
+jaccard.harmonic.centrality <- function(g)
 {
      if (class(g)[1] !="igraph"){
          stop ("'g' must be an 'igraph' object")
@@ -33,7 +33,7 @@ jaccard.harmonic.centrality=function(g)
 }
 
 library(igraph)
-cosine.harmonic.centrality=function(g)
+cosine.harmonic.centrality <- function(g)
 {
      if (class(g)[1] !="igraph"){
          stop ("'g' must be an 'igraph' object")
