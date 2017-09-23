@@ -5,7 +5,7 @@ natural.distance.matrix=function(g)
          stop ("'g' must be an 'igraph' object")
      }
      adj <- as.matrix(get.adjacency(g))
-     nat.dist.matrix <- as.matrix(dist(ad))
+     nat.dist.matrix <- as.matrix(dist(adj))
      dimnames(nat.dist.matrix) <- list(rownames(adj),colnames(adj))
      return(nat.dist.matrix)
 }
