@@ -1,0 +1,52 @@
+library(igraph)
+natural.harmonic.centrality=function(g)
+{
+     if (class(g)[1] !="igraph"){
+         stop ("'g' must be an 'igraph' object")
+     }
+     adj <- as.matrix(get.adjacency(g))
+     nat.dist.matrix <- as.matrix(dist(adj))
+     recip.nat.dist.matrix <- 1/nat.dist.matrix
+     recip.nat.dist.matrix[!is.finite(recip.nat.dist.matrix)] <- 0
+     nat.har.cent <- rowSums(recip.nat.dist.matrix)
+     names(nat.har.cent) <- rownames(adj)
+     return(nat.har.cent)
+}
+
+library(igraph)
+jaccard.harmonic.centrality=function(g)
+{
+     if (class(g)[1] !="igraph"){
+         stop ("'g' must be an 'igraph' object")
+     }
+     adj <- as.matrix(get.adjacency(g))
+     a <- adj %*% t(adj)
+     b <- adj %*% (1-t(adj))
+     c <- (1-adj) %*% t(adj)
+     s <- a/(a+b+c)
+     jac.dist.matrix <- sqrt(1-s)
+     recip.jac.dist.matrix <- 1/jac.dist.matrix
+     recip.jac.dist.matrix[!is.finite(recip.jac.dist.matrix)] <- 0
+     jac.har.cent <- rowSums(recip.jac.dist.matrix)
+     names(jac.har.cent) <- rownames(adj)
+     return(jac.har.cent)
+}
+
+library(igraph)
+cosine.harmonic.centrality=function(g)
+{
+     if (class(g)[1] !="igraph"){
+         stop ("'g' must be an 'igraph' object")
+     }
+     adj <- as.matrix(get.adjacency(g))
+     a <- adj %*% t(adj)
+     b <- adj %*% (1-t(adj))
+     c <- (1-adj) %*% t(adj)
+     s <- a/sqrt((a+b)*(a+c))
+     cos.dist.matrix <- sqrt(1-s)
+     recip.cos.dist.matrix <- 1/cos.dist.matrix
+     recip.cos.dist.matrix[!is.finite(recip.cos.dist.matrix)] <- 0
+     cos.har.cent <- rowSums(recip.cos.dist.matrix)
+     names(cos.har.cent) <- rownames(adj)
+     return(cos.har.cent)
+}
