@@ -1,0 +1,48 @@
+library(igraph)
+natural.closeness.centrality=function(g)
+{
+     if (class(g)[1] !="igraph"){
+         stop ("'g' must be an 'igraph' object")
+     }    
+     adj <- as.matrix(get.adjacency(g))
+     nat.dist.matrix <- as.matrix(dist(adj))
+     nat.closeness.cent <- 1/rowSums(nat.dist.matrix)
+     names(nat.closeness.cent) <- rownames(adj)
+     return(nat.closeness.cent)
+}
+
+library(igraph)
+jaccard.closeness.centrality=function(g)
+{
+     if (class(g)[1] !="igraph"){
+         stop ("'g' must be an 'igraph' object")
+     }
+     adj <- as.matrix(get.adjacency(g))
+     a <- adj %*% t(adj)
+     b <- adj %*% (1-t(adj))
+     c <- (1-adj) %*% t(adj)
+     s <- a/(a+b+c)
+     jac.dist.matrix <- sqrt(1-s)
+     jac.closeness.cent <- 1/rowSums(jac.dist.matrix)
+     names(jac.closeness.cent) <- rownames(adj)
+     return(jac.closeness.cent)
+}     
+
+library(igraph)
+cosine.closeness.centrality=function(g)
+{
+     if (class(g)[1] !="igraph"){
+         stop ("'g' must be an 'igraph' object")
+     }
+     adj <- as.matrix(get.adjacency(g))
+     a <- adj %*% t(adj)
+     b <- adj %*% (1-t(adj))
+     c <- (1-adj) %*% t(adj)
+     s <- a/sqrt((a+b)*(a+c))
+     cos.dist.matrix <- sqrt(1-s)
+     cos.closeness.cent <- 1/rowSums(cos.dist.matrix)
+     names(cos.closeness.cent) <- rownames(adj)
+     return(cos.closeness.cent)
+}
+
+
