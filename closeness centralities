@@ -1,5 +1,5 @@
 library(igraph)
-natural.closeness.centrality=function(g)
+natural.closeness.centrality <- function(g)
 {
      if (class(g)[1] !="igraph"){
          stop ("'g' must be an 'igraph' object")
@@ -12,7 +12,7 @@ natural.closeness.centrality=function(g)
 }
 
 library(igraph)
-jaccard.closeness.centrality=function(g)
+jaccard.closeness.centrality <- function(g)
 {
      if (class(g)[1] !="igraph"){
          stop ("'g' must be an 'igraph' object")
@@ -29,7 +29,7 @@ jaccard.closeness.centrality=function(g)
 }     
 
 library(igraph)
-cosine.closeness.centrality=function(g)
+cosine.closeness.centrality <- function(g)
 {
      if (class(g)[1] !="igraph"){
          stop ("'g' must be an 'igraph' object")
