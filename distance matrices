@@ -1,0 +1,47 @@
+library(igraph)
+natural.distance.matrix=function(g)
+{
+     if (class(g)[1] !="igraph"){
+         stop ("'g' must be an 'igraph' object")
+     }
+     adj <- as.matrix(get.adjacency(g))
+     nat.dist.matrix <- as.matrix(dist(ad))
+     dimnames(nat.dist.matrix) <- list(rownames(adj),colnames(adj))
+     return(nat.dist.matrix)
+}
+
+library(igraph)
+jaccard.distance.matrix=function(g)
+{
+     if (class(g)[1] !="igraph"){
+         stop ("'g' must be an 'igraph' object")
+     }
+     adj <- as.matrix(get.adjacency(g))
+     a <- adj %*% t(adj)
+     b <- adj %*% (1-t(adj))
+     c <- (1-adj) %*% t(adj)
+     s <- a/(a+b+c)
+     jac.dist.matrix <- sqrt(1-s)
+     dimnames(jac.dist.matrix) <- list(rownames(adj),colnames(adj))
+     return(jac.dist.matrix)
+}
+
+The above function was inspired by the function dist.binary() from the ade4 package.
+
+library(igraph)
+cosine.distance.matrix=function(g)
+{
+     if (class(g)[1] !="igraph"){
+         stop ("'g' must be an 'igraph' object")
+     }
+     adj <- as.matrix(get.adjacency(g))
+     a <- adj %*% t(adj)
+     b <- adj %*% (1-t(adj))
+     c <- (1-adj) %*% t(adj)
+     s <- a/sqrt((a+b) * (a+c))
+     cos.dist.matrix <- sqrt(1-s)
+     dimnames(cos.dist.matrix) <- list(rownames(adj),colnames(adj))
+     return(cos.dist.matrix)
+}
+ 
+The above function was inspired by the function dist.binary() from the ade4 package.
