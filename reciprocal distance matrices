@@ -1,0 +1,49 @@
+library(igraph)
+reciprocal.natural.distance.matrix=function(g)
+{
+     if (class(g)[1] !="igraph"){
+         stop ("'g' must be an 'igraph' object")
+     }
+     adj <- as.matrix(get.adjacency(g))
+     nat.dist.matrix <- as.matrix(dist(adj))
+     recip.nat.dist.matrix <- 1/nat.dist.matrix
+     recip.nat.dist.matrix[!is.finite(recip.nat.dist.matrix)] <- 0
+     dimnames(recip.nat.dist.matrix) <- list(rownames(adj),colnames(adj))
+     return(recip.nat.dist.matrix)
+}
+
+library(igraph)
+reciprocal.jaccard.distance.matrix=function(g)
+{
+     if (class(g)[1] !="igraph"){
+         stop ("'g' must be an 'igraph' object")
+     }
+     adj <- as.matrix(get.adjacency(g))
+     a <- adj %*% t(adj)
+     b <- adj %*% (1-t(adj))
+     c <- (1-adj) %*% t(adj)
+     s <- a/(a+b+c)
+     jac.dist.matrix <- sqrt(1-s)
+     recip.jac.dist.matrix <- 1/jac.dist.matrix
+     recip.jac.dist.matrix[!is.finite(recip.jac.dist.matrix)] <- 0
+     dimnames(recip.jac.dist.matrix) <- list(rownames(adj),colnames(adj))
+     return(recip.jac.dist.matrix)
+}
+
+library(igraph)
+reciprocal.cosine.distance.matrix=function(g)
+{
+      if (class(g)[1] !="igraph"){
+          stop ("'g' must be an 'igraph' object")
+      }    
+      adj <- as.matrix(get.adjacency(g))
+      a <- adj %*% t(adj)
+      b <- adj %*% (1-t(adj))
+      c <- (1-adj) %*% t(adj)
+      s <- a/sqrt((a+b)*(a+c))
+      cos.dist.matrix <- sqrt(1-s)
+      recip.cos.dist.matrix <- 1/cos.dist.matrix
+      recip.cos.dist.matrix[!is.finite(recip.cos.dist.matrix)] <- 0
+      dimnames(recip.cos.dist.matrix) <- list(rownames(adj),colnames(adj))
+      return(recip.cos.dist.matrix)
+}
